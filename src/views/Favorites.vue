@@ -1,21 +1,18 @@
 <template>
     <div>
-        <search-bar />
-        <new-contact />
-        <contact-list />
+        <search-bar></search-bar>
+        <contact-list></contact-list>
     </div>
 </template>
 
 <script>
 import SearchBar from '@/components/SearchBar';
-import NewContact from '@/components/NewContact';
 import ContactList from '@/components/ContactList';
 
 export default {
-    name: 'Home',
+    name: 'Favorites',
     components: {
         SearchBar,
-        NewContact,
         ContactList
     }
 };

@@ -1,0 +1,25 @@
+$nc: new_contact;
+
+.#{$nc} {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 25px;
+    border: 1px dashed #2DA1AD;
+    border-radius: 4px;
+    margin: 0 8px;
+    opacity: 0.5;
+    color: $green02;
+
+    .icon {
+        font-size: rem(18);
+    }
+
+    p {
+        margin: 0 0 0 18px;
+        font: $fontPrimReg;
+        font-size: rem(14);
+    }
+
+}

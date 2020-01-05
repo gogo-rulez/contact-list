@@ -1,0 +1,35 @@
+$h: header;
+
+.#{$h} {
+    position: relative;
+    height: 50px;
+    background-image: linear-gradient(182.65deg, #78C9CE 0%, #2496A2 99.98%, #2496A2 100%);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+    &::after {
+        content: " ";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 7px;
+        background-color: #FFFFFF;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        opacity: 0.3;
+    }
+
+    &__logo_figure {
+        display: flex;
+        height: 43px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img {
+        display: block;
+        width: 149px;
+        height: 15px;
+    }
+
+
+}
