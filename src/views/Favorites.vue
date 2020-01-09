@@ -1,8 +1,12 @@
 <template>
     <div>
-        <search-bar />
+        <search-bar
+            :model="searchQuery"
+            @searchInputValue="searchFilter = $event"
+        />
         <contact-list
-            :only-favorites="true"
+            :favorites-page="true"
+            :search-filter="searchFilter"
         />
     </div>
 </template>
@@ -16,9 +20,13 @@ export default {
     components: {
         SearchBar,
         ContactList
+    },
+
+    data () {
+        return {
+            searchQuery: '',
+            searchFilter: ''
+        }
     }
 };
 </script>
-
-<style lang="scss">
-</style>

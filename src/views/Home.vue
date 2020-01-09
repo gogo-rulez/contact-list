@@ -1,8 +1,13 @@
 <template>
     <div>
-        <search-bar />
+        <search-bar
+            :model="searchQuery"
+            @searchInputValue="searchFilter = $event"
+        />
         <add-contact />
-        <contact-list />
+        <contact-list
+            :search-filter="searchFilter"
+        />
     </div>
 </template>
 
@@ -17,9 +22,13 @@ export default {
         SearchBar,
         AddContact,
         ContactList
+    },
+
+    data () {
+        return {
+            searchQuery: '',
+            searchFilter: ''
+        }
     }
 };
 </script>
-
-<style module>
-</style>

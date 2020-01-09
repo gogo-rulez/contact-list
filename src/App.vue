@@ -24,18 +24,19 @@ export default {
     },
 
     created () {
-        console.log('GORAN 1', this.getContactList);
+        console.log(this.getContactList);
+        if(this.getContactList.length) return;
+
         if(localStorage.getItem('contact_list')) {
             let items = JSON.parse(localStorage.getItem('contact_list'));
             items.forEach(item => {
-                this.saveContactList(item);
+                this.addToContactList(item);
             });
-            console.log('GORAN 2', this.getContactList);
         }
     },
 
     methods: {
-        ...mapActions(['saveContactList']),
+        ...mapActions(['addToContactList']),
     }
 };
 </script>

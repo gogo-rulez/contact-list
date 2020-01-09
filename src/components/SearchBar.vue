@@ -23,7 +23,12 @@
         </div>
 
         <div class="search_bar__input_wrap">
-            <input type="text" class="search_bar__input">
+            <input
+                v-model="tempModel"
+                type="text"
+                class="search_bar__input"
+                @keyup="updateSearchQuery()"
+            >
             <a role="button" class="search_bar__input_submit">
                 <span class="icon icon-search"></span>
             </a>
@@ -36,5 +41,25 @@
 <script>
     export default {
         name: 'SearchBar',
+
+        props: {
+            model: String
+        },
+
+        data () {
+            return {
+                tempModel: null
+            }
+        },
+
+        mounted () {
+            this.tempModel = this.model;
+        },
+
+        methods: {
+            updateSearchQuery () {
+                this.$emit('searchInputValue', this.tempModel);
+            }
+        }
     }
 </script>

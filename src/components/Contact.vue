@@ -23,7 +23,7 @@
             <a
                 role="button"
                 class="contact__option contact__option--delete"
-                @click="deleteContact()"
+                @click="removeContact()"
             >
                 <span class="icon icon-delete"></span>
             </a>
@@ -33,66 +33,49 @@
 </template>
 
 <script>
-    export default {
-        name: 'Contact',
+import {mapGetters, mapActions} from 'vuex';
 
-        props: {
-            id: [String, Number],
-            img: String,
-            name: String,
-            isFavorite: Boolean,
+export default {
+    name: 'Contact',
+
+    props: {
+        id: [String, Number],
+        img: String,
+        name: String,
+        isFavorite: Boolean,
+        onlyFavorites: Boolean,
+        favoritesPage: Boolean
+    },
+
+    data () {
+        return {
+            tempIsFavorite: null
+        }
+    },
+
+    computed: {
+        ...mapGetters(['getContactList']),
+
+        contactIsFavorite () {
+            return this.isFavorite ? 'icon icon-heart-full' : 'icon icon-heart-empty';
+        }
+    },
+
+    mounted () {
+        this.tempIsFavorite = this.isFavorite;
+    },
+
+    methods: {
+        ...mapActions(['changeContactList', 'deleteContact', 'toggleIsFavorite']),
+
+        setFavoriteFlag () {
+            this.toggleIsFavorite(this.id);
+
         },
 
-        data () {
-            return {
-                tempIsFavorite: null
-            }
-        },
-
-        computed: {
-            contactIsFavorite () {
-                return this.tempIsFavorite ? 'icon icon-heart-full' : 'icon icon-heart-empty';
-            }
-        },
-
-        mounted () {
-            this.tempIsFavorite = this.isFavorite;
-        },
-
-        methods: {
-            setFavoriteFlag () {
-                let prevStorage = [];
-
-                let items = JSON.parse(localStorage.getItem('contact_list'));
-                items.forEach(item => {
-                    if(item.id === this.id) {
-                        item.isFavorite = !item.isFavorite;
-                        this.tempIsFavorite = !this.tempIsFavorite;
-
-                        if(!item.isFavorite) {
-                            this.$emit('removeFromFavs');
-                        }
-                    }
-                    prevStorage.push(item);
-                });
-
-                localStorage.setItem('contact_list', JSON.stringify(prevStorage));
-            },
-
-            deleteContact () {
-                let prevStorage = [];
-
-                let items = JSON.parse(localStorage.getItem('contact_list'));
-                items.forEach(item => {
-                    if(item.id === this.id) {
-                        this.$refs['contact'].remove();
-                    } else {
-                        prevStorage.push(item);
-                    }
-                });
-
-                localStorage.setItem('contact_list', JSON.stringify(prevStorage));
-            }
+        removeContact () {
+            this.deleteContact(this.id);
         }
     }
+}
 </script>

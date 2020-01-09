@@ -2,9 +2,10 @@
     <ul
         v-if="contactsReady"
         class="contact__list">
+
         <template v-for="contact in contacts">
 
-            <template v-if="onlyFavorites">
+            <template v-if="favoritesPage">
                 <contact
                     v-if="contact.isFavorite"
                     :ref="`contact_${contact.id}`"
@@ -13,7 +14,7 @@
                     :img="contact.user_avatar"
                     :name="contact.full_name"
                     :isFavorite="contact.isFavorite"
-                    @removeFromFavs="removeFavContact(`contact_${contact.id}`)"
+                    :favoritesPage="favoritesPage"
                 />
             </template>
 
@@ -32,43 +33,50 @@
 </template>
 
 <script>
-    import Contact from '@/components/Contact';
-    export default {
-        name: 'ContactList',
+import { mapGetters, mapActions } from 'vuex';
+import Contact from '@/components/Contact';
 
-        props: {
-            onlyFavorites: Boolean
-        },
+export default {
+    name: 'ContactList',
 
-        components: {
-            Contact
-        },
+    props: {
+        favoritesPage: Boolean,
+        searchFilter: String
+    },
 
-        data () {
-            return {
-                contacts: [],
-                contactsReady: false
-            }
-        },
+    components: {
+        Contact
+    },
 
-        mounted () {
-            this.loadContacts();
-        },
+    data () {
+        return {
+            contacts: [],
+            contactsReady: false
+        }
+    },
 
-        methods: {
-            loadContacts () {
-                if(localStorage.getItem('contact_list')) {
-                    this.contacts = JSON.parse(localStorage.getItem('contact_list'));
-                    console.log(this.contacts);
-                    this.contactsReady = true;
-                }
-            },
+    mounted () {
+        // this.loadContacts();
+        this.contactsReady = true;
+        this.contacts = this.getContactList;
+    },
 
-            removeFavContact (ref) {
-                console.log(ref);
-                console.log(this.$refs.ref);
-                this.$refs.ref.remove();
+    watch: {
+        searchFilter (value) {
+            if (value) {
+                this.contacts = this.getContactList.filter(x => {
+                    let fullName = x.full_name.toLowerCase();
+                    let query = value.toLowerCase();
+                    return fullName.includes(query);
+                });
+            } else {
+                this.contacts = this.getContactList;
             }
         }
-    }
+    },
+
+    computed: {
+        ...mapGetters(['getContactList', 'getContactListEntries'])
+    },
+}
 </script>

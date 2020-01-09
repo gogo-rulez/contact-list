@@ -88,8 +88,8 @@
 </template>
 
 <script>
-import NewContactInfo from '@/components/NewContactInfo';
 import { mapGetters, mapActions } from 'vuex';
+import NewContactInfo from '@/components/NewContactInfo';
 
 export default {
     name: 'NewContact',
@@ -101,14 +101,6 @@ export default {
     data () {
         return {
             nextContactId: null,
-            emptyNewContact: {
-                id: null,
-                user_avatar: '',
-                full_name: '',
-                email: '',
-                numbers: {},
-                isFavorite: false
-            },
             newContact: {
                 id: null,
                 user_avatar: '',
@@ -121,35 +113,30 @@ export default {
         }
     },
 
-    mounted () {
-
-        console.log('mounted');
-        // this.newContact.id = this.getContactListEntries + 1;
-
-        // if(localStorage.getItem('contact_list')) {
-        //     let items = JSON.parse(localStorage.getItem('contact_list'));
-        //     // this.nextContactId = this.getContactListEntries;
-        // } else {
-        //     // this.newContact.id = 1;
-        //     this.nextContactId = 1;
-        // }
-
-    },
-
     computed: {
         ...mapGetters(['getContactList', 'getContactListEntries'])
     },
 
     watch: {
+        // watch when contactList changes in store
+        // reset the data and the component
         getContactList () {
-            Object.assign(this.newContact, this.emptyNewContact);
+            this.newContact = {
+                id: null,
+                user_avatar: '',
+                full_name: '',
+                email: '',
+                numbers: {},
+                isFavorite: false
+            };
+
             this.previewImageSource = '';
             this.nextContactId = this.getContactListEntries + 1;
         }
     },
 
     methods: {
-        ...mapActions(['saveContactList']),
+        ...mapActions(['addToContactList']),
 
         openBrowseWindow (e) {
             this.$refs['browse_btn'].click();
@@ -176,33 +163,11 @@ export default {
             this.newContact.user_avatar = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
         },
 
-        // store previous contacts in array
-        // store new contact in array
-        // stringify the array so that localStorage can receive it
-        // reload component by changing nextContactId
-        // reset the data and the previewImageSource
+        // set contact id
+        // send data to store
         saveUser () {
-            let prevStorage = [];
-
-            console.log('goran 4', this.getContactListEntries);
             this.newContact.id = this.getContactListEntries + 1;
-            console.log('GORAN 5', this.newContact.id);
-
-            // if(localStorage.getItem('contact_list')) {
-            //     let items = JSON.parse(localStorage.getItem('contact_list'));
-            //     console.log('ITEMS', items);
-            //     items.forEach(item => {
-            //         prevStorage.push(item);
-            //     });
-            // }
-
-            console.log('list length', this.getContactList.length);
-            prevStorage.push(this.newContact);
-            this.saveContactList(this.newContact);
-
-
-            console.log('GORAN 3', this.getContactList);
-            // this.newContact.id = this.nextContactId;
+            this.addToContactList(this.newContact);
         }
     }
 };
