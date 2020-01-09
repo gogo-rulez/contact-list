@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
-    <title>51D8F3D5-AFD9-40C1-A527-649BC905F0FA</title>
-    <desc>Created with sketchtool.</desc>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icon-/-phone" stroke="#2DA1AD">
-            <path d="M14.0537021,12.8976651 L10.9522757,9.7962387 L9.80088847,10.9476259 L9.45502591,10.6942828 C8.38882097,9.91329136 7.33025388,9.00264405 6.32072624,7.99311641 C5.54507394,7.21746411 4.82731624,6.41240594 4.18123995,5.59604971 L3.90498199,5.24698116 L5.14987699,4.00208616 L2.05470677,0.977867672 L1.06024936,1.94787636 C0.0279655217,3.67140726 1.44028411,7.35531496 4.51760395,10.4326348 C7.62279311,13.537824 11.3456068,14.9477176 12.9738845,13.919755 L14.0537021,12.8976651 Z" id="Combined-Shape"></path>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 15 15" style="enable-background:new 0 0 15 15;" xml:space="preserve">
+<title>51D8F3D5-AFD9-40C1-A527-649BC905F0FA</title>
+<desc>Created with sketchtool.</desc>
+<g id="Symbols">
+	<g id="Icon-_x2F_-phone">
+		<path d="M11.6,14.7c-2.1,0-5-1.5-7.5-3.9C1,7.6-0.6,3.7,0.6,1.7l0.1-0.1l1.3-1.3L5.9,4L4.6,5.3c0.6,0.8,1.3,1.6,2.1,2.4
+			c1,1,2,1.9,3.1,2.7L11,9.1l3.8,3.8l-1.5,1.4C12.9,14.6,12.3,14.7,11.6,14.7z M1.5,2.3C0.7,3.6,1.8,7,4.9,10.1
+			c3.1,3.1,6.5,4.2,7.8,3.4l0.6-0.6L11,10.5l-1.1,1.1l-0.7-0.5C8.1,10.3,7,9.4,6,8.3C5.2,7.6,4.4,6.7,3.8,5.9L3.2,5.2L4.4,4L2.1,1.7
+			L1.5,2.3z"/>
+	</g>
+</g>
 </svg>

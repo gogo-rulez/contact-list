@@ -1,7 +1,13 @@
-@import "includes/i_mixins";
 @import "includes/i_reset";
+@import "includes/i_mixins";
 @import "includes/i_typography";
-
 @import "site_settings";
 
+@import "ui_elements/ui_buttons";
+
 @import "components/c_header";
+@import "components/c_search_bar";
+@import "components/c_add_contact";
+@import "components/c_contact";
+
+@import "views/create_contact";

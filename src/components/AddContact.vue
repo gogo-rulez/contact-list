@@ -1,8 +1,8 @@
 <template>
 
     <router-link
-        :to="{ name: 'CreateContact' }"
-        class="new_contact"
+        :to="{ name: 'NewContact' }"
+        class="add_contact"
     >
         <span class="icon icon-add"></span>
         <p>Add new</p>
@@ -12,6 +12,6 @@
 
 <script>
     export default {
-        name: "NewContact"
+        name: "AddContact"
     }
 </script>

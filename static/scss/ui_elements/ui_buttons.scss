@@ -1,0 +1,18 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    border-radius: 29px;
+    font: $fontPrimBold;
+    font-size: rem(14);
+    color: $white;
+
+    &.is-grey {
+        background-color: $grey03;
+    }
+
+    &.is-green {
+        background-color: $green02;
+    }
+}

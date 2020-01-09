@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Favorites from "../views/Favorites.vue";
-import CreateContact from "../views/CreateContact.vue";
+import NewContact from "../views/NewContact.vue";
 
 Vue.use(VueRouter);
 
@@ -18,9 +18,9 @@ const routes = [
         component: Favorites
     },
     {
-        path: '/create-contact',
-        name: 'CreateContact',
-        component: CreateContact
+        path: '/new-contact',
+        name: 'NewContact',
+        component: NewContact
     },
 ];
 

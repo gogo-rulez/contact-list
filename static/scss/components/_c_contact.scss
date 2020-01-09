@@ -5,7 +5,6 @@ $c: contact;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     height: 60px;
     padding: 0 0 0 13px;
     border: 1px solid rgba(187, 196, 195, 0.4);
@@ -20,10 +19,14 @@ $c: contact;
     }
 
     &__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex: 0 0 46px;
         height: 46px;
         border: 3px solid rgba(#BBC4C3, .3);
         border-radius: 100%;
+        background-color: rgba($grey01, 0.5);
         margin: 0;
         overflow: hidden;
 

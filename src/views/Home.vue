@@ -1,26 +1,25 @@
 <template>
     <div>
         <search-bar />
-        <new-contact />
+        <add-contact />
         <contact-list />
     </div>
 </template>
 
 <script>
 import SearchBar from '@/components/SearchBar';
-import NewContact from '@/components/NewContact';
+import AddContact from '@/components/AddContact';
 import ContactList from '@/components/ContactList';
 
 export default {
     name: 'Home',
     components: {
         SearchBar,
-        NewContact,
+        AddContact,
         ContactList
     }
 };
 </script>
 
-<style lang="scss">
-@import "static/scss/views/home.scss";
+<style module>
 </style>

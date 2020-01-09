@@ -1,7 +1,9 @@
 <template>
     <div>
-        <search-bar></search-bar>
-        <contact-list></contact-list>
+        <search-bar />
+        <contact-list
+            :only-favorites="true"
+        />
     </div>
 </template>
 
@@ -19,5 +21,4 @@ export default {
 </script>
 
 <style lang="scss">
-@import "static/scss/views/home.scss";
 </style>
