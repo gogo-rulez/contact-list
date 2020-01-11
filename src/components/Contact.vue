@@ -3,11 +3,19 @@
         ref="contact"
         class="contact">
 
-        <figure class="contact__avatar">
-            <img :src="`data:image/png;base64,${img}`" :alt="name">
-        </figure>
+        <router-link
+            :to="{name: 'ContactDetail', params: {id: id}}"
+            class="contact__link"
+        >
 
-        <p class="contact__name">{{ name }}</p>
+            <figure class="contact__avatar">
+                <img v-if="userAvatar" :src="`data:image/png;base64,${userAvatar}`" :alt="fullName">
+                <span v-else class="icon icon-person"></span>
+            </figure>
+
+            <p class="contact__name">{{ fullName }}</p>
+
+        </router-link>
 
         <div class="contact__options_wrap">
             <a
@@ -17,9 +25,12 @@
             >
                 <span :class="contactIsFavorite"></span>
             </a>
-            <a role="button" class="contact__option contact__option--edit">
+            <router-link
+                :to="{name: 'ContactEntryEdit', params:{id: id}}"
+                class="contact__option contact__option--edit"
+            >
                 <span class="icon icon-edit"></span>
-            </a>
+            </router-link>
             <a
                 role="button"
                 class="contact__option contact__option--delete"
@@ -40,10 +51,9 @@ export default {
 
     props: {
         id: [String, Number],
-        img: String,
-        name: String,
+        userAvatar: String,
+        fullName: String,
         isFavorite: Boolean,
-        onlyFavorites: Boolean,
         favoritesPage: Boolean
     },
 
@@ -66,7 +76,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(['changeContactList', 'deleteContact', 'toggleIsFavorite']),
+        ...mapActions(['markForDeletion', 'toggleIsFavorite', 'openModal']),
 
         setFavoriteFlag () {
             this.toggleIsFavorite(this.id);
@@ -74,7 +84,8 @@ export default {
         },
 
         removeContact () {
-            this.deleteContact(this.id);
+            this.markForDeletion(this.id);
+            this.openModal('Delete');
         }
     }
 }

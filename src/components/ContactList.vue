@@ -11,10 +11,10 @@
                     :ref="`contact_${contact.id}`"
                     :key="contact.id"
                     :id="contact.id"
-                    :img="contact.user_avatar"
-                    :name="contact.full_name"
-                    :isFavorite="contact.isFavorite"
-                    :favoritesPage="favoritesPage"
+                    :user-avatar="contact.user_avatar"
+                    :full-name="contact.full_name"
+                    :is-favorite="contact.isFavorite"
+                    :favorites-page="favoritesPage"
                 />
             </template>
 
@@ -22,9 +22,9 @@
                 <contact
                     :key="contact.id"
                     :id="contact.id"
-                    :img="contact.user_avatar"
-                    :name="contact.full_name"
-                    :isFavorite="contact.isFavorite"
+                    :user-avatar="contact.user_avatar"
+                    :full-name="contact.full_name"
+                    :is-favorite="contact.isFavorite"
                 />
             </template>
 

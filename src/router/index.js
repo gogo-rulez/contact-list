@@ -2,7 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Favorites from "../views/Favorites.vue";
-import NewContact from "../views/NewContact.vue";
+import ContactEntryNew from "../views/ContactEntryNew.vue";
+import ContactEntryEdit from "../views/ContactEntryEdit.vue";
+import ContactDetail from "../views/ContactDetail.vue";
 
 Vue.use(VueRouter);
 
@@ -19,8 +21,18 @@ const routes = [
     },
     {
         path: '/new-contact',
-        name: 'NewContact',
-        component: NewContact
+        name: 'ContactEntryNew',
+        component: ContactEntryNew
+    },
+    {
+        path: '/edit-contact/:id(\\d+)',
+        name: 'ContactEntryEdit',
+        component: ContactEntryEdit
+    },
+    {
+        path: '/contact/:id(\\d+)',
+        name: 'ContactDetail',
+        component: ContactDetail
     },
 ];
 

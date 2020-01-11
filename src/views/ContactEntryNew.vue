@@ -1,24 +1,27 @@
 <template>
     <div
         :key="nextContactId"
-        class="new_contact">
-        <div class="new_contact__headline">
+        class="contact_entry">
+        <div class="contact_entry__headline">
             <router-link
                 :to="{ name: 'Home' }"
-                class="new_contact__back_btn"
+                class="contact_entry__back_btn"
             >
                 <span class="icon icon-arrow-back"></span>
             </router-link>
         </div>
 
-        <div class="new_contact__avatar">
+        <div class="contact_entry__avatar">
 
             <div
                 v-if="previewImageSource"
-                class="new_contact__image_wrap"
-                @click="openBrowseWindow()"
+                class="contact_entry__image_wrap"
+                @click="removeImage()"
             >
-                <img ref="avatar_image" :src="previewImageSource" alt="">
+                <figure class="contact_entry__image_figure">
+                    <img ref="avatar_image" :src="previewImageSource" alt="">
+                </figure>
+
                 <span class="icon icon-x"></span>
                 <input
                     v-model="newContact.user_avatar"
@@ -27,7 +30,7 @@
 
             <div
                 v-else
-                class="new_contact__avatar_upload"
+                class="contact_entry__avatar_upload"
                 @click="openBrowseWindow()">
                 <span class="icon icon-upload"></span>
             </div>
@@ -35,12 +38,13 @@
             <input
                 ref="browse_btn"
                 type="file"
-                class="new_contact__avatar_input"
+                class="contact_entry__avatar_input"
                 @change="previewImage($event)">
         </div>
 
-        <new-contact-info
+        <contact-entry-info
             :model="newContact.full_name"
+            :error="errors.full_name"
             input-name="full_name"
             label="full name"
             icon-name="person"
@@ -48,8 +52,9 @@
             @modelValue="newContact.full_name = $event"
         />
 
-        <new-contact-info
+        <contact-entry-info
             :model="newContact.email"
+            :error="errors.email"
             input-name="email"
             label="email"
             icon-name="email"
@@ -57,17 +62,17 @@
             @modelValue="newContact.email = $event"
         />
 
-        <new-contact-info
+        <contact-entry-info
             :model="newContact.numbers"
             input-name="numbers"
             label="numbers"
             icon-name="phone"
             placeholder="Number"
             :multipleInputs="true"
-            @numbers="newContact.nmbers = $event"
+            @numbers="newContact.numbers = $event"
         />
 
-        <div class="new_contact__buttons_wrap">
+        <div class="contact_entry__buttons_wrap">
             <router-link
                 :to="{ name: 'Home' }"
                 class="btn is-grey"
@@ -89,13 +94,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import NewContactInfo from '@/components/NewContactInfo';
+import ContactEntryInfo from '@/components/ContactEntryInfo';
 
 export default {
-    name: 'NewContact',
+    name: 'ContactEntryNew',
 
     components: {
-        NewContactInfo
+        ContactEntryInfo
     },
 
     data () {
@@ -106,8 +111,12 @@ export default {
                 user_avatar: '',
                 full_name: '',
                 email: '',
-                numbers: {},
+                numbers: [],
                 isFavorite: false
+            },
+            errors: {
+                full_name: '',
+                email: ''
             },
             previewImageSource: '',
         }
@@ -126,7 +135,7 @@ export default {
                 user_avatar: '',
                 full_name: '',
                 email: '',
-                numbers: {},
+                numbers: [],
                 isFavorite: false
             };
 
@@ -163,11 +172,54 @@ export default {
             this.newContact.user_avatar = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
         },
 
+        // remove choosen image
+        removeImage () {
+            this.previewImageSource = '';
+            this.newContact.user_avatar = '';
+        },
+
         // set contact id
         // send data to store
         saveUser () {
+
+            if(!this.validateInput()) return;
+
             this.newContact.id = this.getContactListEntries + 1;
             this.addToContactList(this.newContact);
+        },
+
+        validateInput () {
+            if(!this.newContact.full_name) {
+                this.errors.full_name = 'This field is required.'
+            } else if(!this.validFullName(this.newContact.full_name)) {
+                this.errors.full_name = 'Enter Your first and last name.'
+            } else {
+                this.errors.full_name = '';
+            }
+
+            if(!this.newContact.email) {
+                this.errors.email = 'This field is required.'
+            } else if(!this.validEmail(this.newContact.email)) {
+                this.errors.email = 'Enter a valid e-mail.'
+            } else {
+                this.errors.email = '';
+            }
+
+            if(this.errors.full_name || this.errors.email) return false;
+
+            return true;
+        },
+
+        validFullName (fullName) {
+            let regExp = /^([a-zA-ZčćžšđČĆŽŠĐ]{2,}(\s[a-zA-ZčćžšđČĆŽŠĐ]{2,})+)$/;
+
+            return regExp.test(fullName);
+        },
+
+        validEmail (email) {
+            let regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            return regExp.test(email);
         }
     }
 };

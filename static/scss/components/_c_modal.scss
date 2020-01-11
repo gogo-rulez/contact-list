@@ -1,0 +1,68 @@
+$m: modal;
+
+.#{$m} {
+    &__overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 300;
+        background-color: rgba($black, 0.4);
+    }
+
+    &__window {
+        position: fixed;
+        top: 150px;
+        left: 28px;
+        right: 28px;
+        z-index: 301;
+        max-width: 320px;
+        border-radius: 4px;
+        margin: 0 auto;
+        background-color: $white;
+        overflow: hidden;
+    }
+
+    &__header {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        height: 60px;
+        padding: 0 30px;
+        border-bottom: 1px solid $grey04;
+    }
+
+    &__title {
+        font: $fontPrimBold;
+        font-size: rem(16);
+        color: $grey03;
+    }
+
+    &__content {
+        padding: 30px 30px;
+
+        p {
+            font: $fontPrimReg;
+            font-size: rem(16);
+            line-height: rem(28);
+            color: $grey03;
+            text-align: center;
+        }
+    }
+
+    &__btn_wrap {
+
+        .#{$m}--delete & {
+            display: flex;
+            flex-direction: column;
+            margin: 51px auto 0;
+            width: 160px;
+
+            .btn + .btn {
+                margin: 18px 0 0;
+            }
+        }
+    }
+
+}
