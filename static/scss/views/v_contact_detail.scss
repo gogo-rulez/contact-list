@@ -1,0 +1,288 @@
+$cd: contact_detail;
+
+.#{$cd} {
+
+    @include min-screen($lg) {
+        max-width: 1024px;
+        margin: 60px auto 0;
+    }
+
+    &__headline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        border-bottom: 1px solid rgba($grey03, 0.4);
+
+        @include min-screen($lg) {
+            display: none;
+            visibility: hidden;
+        }
+    }
+
+    &__back_btn,
+    &__edit_btn,
+    &__favorite_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+
+        @include min-screen($lg) {
+            width: 46px;
+            height: 46px;
+        }
+
+        .icon {
+            color: $grey03;
+        }
+    }
+
+    &__back_btn {
+        margin: 0 auto 0 12px;
+
+        .icon {
+            font-size: rem(12);
+        }
+
+        &--desktop {
+            display: none;
+            visibility: hidden;
+
+            @include min-screen($lg) {
+                display: flex;
+                visibility: visible;
+                margin: 0;
+
+                .icon {
+                    align-items: center;
+                    justify-content: center;
+                    font-size: rem(15);
+                }
+            }
+        }
+    }
+
+    &__edit_btn {
+
+        .icon {
+            font-size: rem(17);
+        }
+
+        &--desktop {
+            margin: 0 -15px 0 13px;
+        }
+    }
+
+    &__favorite_btn {
+
+        .icon {
+            font-size: rem(15);
+        }
+    }
+
+    &__options_wrap {
+        display: flex;
+        align-items: center;
+        margin: 0 13px 0 auto;
+
+        &--desktop {
+            margin: 0 0 0 auto;
+        }
+    }
+
+    &__outer_wrap {
+        padding: 0 25px;
+
+        @include min-screen($lg) {
+            padding: 0;
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        height: 98px;
+        border-bottom: 1px solid $green02;
+
+        @include min-screen($lg) {
+            align-items: flex-start;
+            height: 180px;
+            border: none;
+        }
+    }
+
+    &__user_avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 50px;
+        border: 3px solid rgba($grey03, .3);
+        border-radius: 100%;
+        background-color: rgba($grey01, 0.5);
+        overflow: hidden;
+
+        @include min-screen($lg) {
+            width: 180px;
+            height: 180px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__name_wrap {
+        margin: 0 0 0 23px;
+
+        @include min-screen($lg) {
+            width: calc(100% - 216px);
+            display: flex;
+            align-items: center;
+            padding: 30px 0 27px;
+            border-bottom: 1px solid $green02;
+            margin: 0 0 0 30px;
+        }
+    }
+
+    &__user_name {
+        font: $fontPrimBold;
+        font-size: rem(21);
+        line-height: rem(28);
+        color: $grey03;
+
+        @include min-screen($lg) {
+            margin: 0 0 0 8px;
+            font-size: rem(28);
+            line-height: rem(34);
+        }
+    }
+
+    &__inner_wrap {
+        margin: 24px 0 0;
+        padding: 0 25px;
+
+        @include min-screen($lg) {
+            padding: 0 0 0 279px;
+        }
+    }
+
+    &__contact_info {
+        @include min-screen($lg) {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .#{$cd}__contact_info + & {
+            margin: 50px 0 0;
+        }
+    }
+
+    &__label {
+        display: flex;
+        align-items: center;
+        color: $green02;
+
+        @include min-screen($lg) {
+            display: inline-flex;
+            width: 92px;
+        }
+
+        .icon {
+            font-size: rem(10);
+
+            &.icon-email {
+                position: relative;
+                top: 2px;
+            }
+
+            &.icon-phone {
+                position: relative;
+                top: 1px;
+                font-size: rem(15);
+
+                @include min-screen($lg) {
+                    font-size: rem(14);
+                }
+            }
+        }
+
+        p {
+            margin: 0 0 0 9px;
+            font: $fontPrimBold;
+            font-size: rem(16);
+            line-height: rem(19);
+
+            @include min-screen($lg) {
+                margin: 0 0 0 15px;
+            }
+        }
+    }
+
+    &__value {
+        padding: 0 25px;
+        margin: 12px 0 0;
+        font: $fontPrimReg;
+        font-size: rem(16);
+        line-height: rem(19);
+        color: $grey03;
+
+        @include min-screen($lg) {
+            display: inline-flex;
+            padding: 0;
+            margin: 0 0 0 33px;
+        }
+    }
+
+    &__value_list {
+        padding: 0 25px;
+        margin: 22px 0 0;
+
+        @include min-screen($lg) {
+            padding: 0;
+            margin: 0 0 0 33px;
+        }
+    }
+
+    &__value_item {
+        display: inline-flex;
+        flex-direction: column;
+
+        &:last-child {
+            margin: 0 0 0 32px;
+
+            @include min-screen($lg) {
+                margin: 0 0 0 20px;
+            }
+        }
+
+        span {
+            font: $fontPrimBold;
+            font-size: rem(14);
+            line-height: rem(17);
+            color: $grey03;
+            text-transform: uppercase;
+
+            & + span {
+                margin: 32px 0 0;
+            }
+        }
+
+        a {
+            font: $fontPrimReg;
+            font-size: rem(16);
+            line-height: rem(17);
+            color: $grey03;
+            text-decoration: underline;
+
+            & + a {
+                margin: 32px 0 0;
+            }
+        }
+    }
+
+
+}

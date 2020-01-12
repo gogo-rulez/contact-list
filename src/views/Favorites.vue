@@ -4,10 +4,12 @@
             :model="searchQuery"
             @searchInputValue="searchFilter = $event"
         />
-        <contact-list
-            :favorites-page="true"
-            :search-filter="searchFilter"
-        />
+        <div class="contact__list_wrap">
+            <contact-list
+                :favorites-page="true"
+                :search-filter="searchFilter"
+            />
+        </div>
     </div>
 </template>
 

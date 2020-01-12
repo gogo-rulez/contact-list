@@ -1,5 +1,15 @@
 <template>
     <li
+        v-if="addNewContact"
+        class="contact contact--add_new"
+    >
+        <add-contact
+            platform="desktop"
+        />
+    </li>
+
+    <li
+        v-else
         ref="contact"
         class="contact">
 
@@ -45,6 +55,7 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex';
+import AddContact from '@/components/AddContact';
 
 export default {
     name: 'Contact',
@@ -54,7 +65,12 @@ export default {
         userAvatar: String,
         fullName: String,
         isFavorite: Boolean,
-        favoritesPage: Boolean
+        favoritesPage: Boolean,
+        addNewContact: Boolean
+    },
+
+    components: {
+        AddContact
     },
 
     data () {

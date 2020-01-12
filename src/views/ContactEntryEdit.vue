@@ -1,4 +1,5 @@
 <template>
+
     <div
         v-if="contactReady"
         class="contact_entry">
@@ -15,6 +16,7 @@
                 class="contact_entry__delete_btn"
                 @click="openModal('Delete')"
             >
+                <p>Delete</p>
                 <span class="icon icon-delete"></span>
             </a>
         </div>
@@ -49,52 +51,57 @@
                 @change="previewImage($event)">
         </div>
 
-        <contact-entry-info
-            :model="newContact.full_name"
-            :error="errors.full_name"
-            input-name="full_name"
-            label="full name"
-            icon-name="person"
-            placeholder="Full name"
-            @modelValue="newContact.full_name = $event"
-        />
+        <div class="contact_entry__inner_wrap">
 
-        <contact-entry-info
-            :model="newContact.email"
-            :error="errors.email"
-            input-name="email"
-            label="email"
-            icon-name="email"
-            placeholder="Email"
-            @modelValue="newContact.email = $event"
-        />
+            <contact-entry-info
+                :model="newContact.full_name"
+                :error="errors.full_name"
+                input-name="full_name"
+                label="full name"
+                icon-name="person"
+                placeholder="Full name"
+                @modelValue="newContact.full_name = $event"
+            />
 
-        <contact-entry-info
-            :model="newContact.numbers"
-            input-name="numbers"
-            label="numbers"
-            icon-name="phone"
-            placeholder="Number"
-            :multipleInputs="true"
-            @numbers="newContact.numbers = $event"
-        />
+            <contact-entry-info
+                :model="newContact.email"
+                :error="errors.email"
+                input-name="email"
+                label="email"
+                icon-name="email"
+                placeholder="Email"
+                @modelValue="newContact.email = $event"
+            />
 
-        <div class="contact_entry__buttons_wrap">
-            <router-link
-                :to="{ name: 'Home' }"
-                class="btn is-grey"
-            >
-                Cancel
-            </router-link>
+            <contact-entry-info
+                :model="newContact.numbers"
+                input-name="numbers"
+                label="numbers"
+                icon-name="phone"
+                placeholder="Number"
+                :multipleInputs="true"
+                @numbers="newContact.numbers = $event"
+            />
 
-            <a
-                role="button"
-                class="btn is-green"
-                @click="saveUser()"
-            >
-                Save
-            </a>
+            <div class="contact_entry__buttons_wrap">
+                <router-link
+                    :to="{ name: 'Home' }"
+                    class="btn is-grey"
+                >
+                    Cancel
+                </router-link>
+
+                <a
+                    role="button"
+                    class="btn is-green"
+                    @click="saveUser()"
+                >
+                    Save
+                </a>
+            </div>
+
         </div>
+
 
     </div>
 </template>
@@ -134,14 +141,12 @@ export default {
     },
 
     mounted () {
-        console.log('evo me', this.$route.params.id);
         this.newContact = this.getContactList.find(x => x.id === Number(this.$route.params.id));
-        console.log('evo me 1', this.getContactList.find(x => x.id === this.$route.params.id));
-        console.log('evo me 2', this.getContactList);
-        console.log('evo me 3', this.newContact);
+
         if(this.newContact.user_avatar) {
             this.previewImageSource = `data:image/png;base64,${this.newContact.user_avatar}`;
         }
+
         this.contactReady = true;
     },
 

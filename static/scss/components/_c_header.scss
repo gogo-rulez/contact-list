@@ -3,8 +3,12 @@ $h: header;
 .#{$h} {
     position: relative;
     height: 50px;
-    background-image: linear-gradient(182.65deg, #78C9CE 0%, #2496A2 99.98%, #2496A2 100%);
+    background-image: linear-gradient(182.65deg, $green01 0%, $green03 99.98%, $green03 100%);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+    @include min-screen($lg) {
+        height: 60px;
+    }
 
     &::after {
         content: " ";
@@ -23,12 +27,21 @@ $h: header;
         height: 43px;
         align-items: center;
         justify-content: center;
+
+        @include min-screen($lg) {
+            height: 53px;
+        }
     }
 
     img {
         display: block;
         width: 149px;
         height: 15px;
+
+        @include min-screen($lg) {
+            width: 178px;
+            height: 18px;
+        }
     }
 
 

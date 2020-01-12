@@ -1,18 +1,19 @@
 <template>
 <div id="app">
 
-    <site-header></site-header>
+    <div :class="$route.name.toLowerCase()">
 
-    <router-view />
+        <site-header></site-header>
 
-    <div class="overlay"></div>
+        <router-view />
 
-    <component
-        v-if="modalIsActive"
-        :is="modalComponent"
-        :contact-to-delete="getContactToDelete"
-    />
+        <component
+            v-if="modalIsActive"
+            :is="modalComponent"
+            :contact-to-delete="getContactToDelete"
+        />
 
+    </div>
 
 </div>
 </template>

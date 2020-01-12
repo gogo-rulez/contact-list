@@ -7,6 +7,7 @@
     font: $fontPrimBold;
     font-size: rem(14);
     color: $white;
+    cursor: pointer;
 
     &.is-grey {
         background-color: $grey03;

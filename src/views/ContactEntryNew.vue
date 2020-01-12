@@ -42,52 +42,57 @@
                 @change="previewImage($event)">
         </div>
 
-        <contact-entry-info
-            :model="newContact.full_name"
-            :error="errors.full_name"
-            input-name="full_name"
-            label="full name"
-            icon-name="person"
-            placeholder="Full name"
-            @modelValue="newContact.full_name = $event"
-        />
+        <div class="contact_entry__inner_wrap">
 
-        <contact-entry-info
-            :model="newContact.email"
-            :error="errors.email"
-            input-name="email"
-            label="email"
-            icon-name="email"
-            placeholder="Email"
-            @modelValue="newContact.email = $event"
-        />
+            <contact-entry-info
+                :model="newContact.full_name"
+                :error="errors.full_name"
+                input-name="full_name"
+                label="full name"
+                icon-name="person"
+                placeholder="Full name"
+                @modelValue="newContact.full_name = $event"
+            />
 
-        <contact-entry-info
-            :model="newContact.numbers"
-            input-name="numbers"
-            label="numbers"
-            icon-name="phone"
-            placeholder="Number"
-            :multipleInputs="true"
-            @numbers="newContact.numbers = $event"
-        />
+            <contact-entry-info
+                :model="newContact.email"
+                :error="errors.email"
+                input-name="email"
+                label="email"
+                icon-name="email"
+                placeholder="Email"
+                @modelValue="newContact.email = $event"
+            />
 
-        <div class="contact_entry__buttons_wrap">
-            <router-link
-                :to="{ name: 'Home' }"
-                class="btn is-grey"
-            >
-                Cancel
-            </router-link>
+            <contact-entry-info
+                :model="newContact.numbers"
+                input-name="numbers"
+                label="numbers"
+                icon-name="phone"
+                placeholder="Number"
+                :multipleInputs="true"
+                @numbers="newContact.numbers = $event"
+            />
 
-            <a
-                role="button"
-                class="btn is-green"
-                @click="saveUser()"
-            >
-                Save
-            </a>
+            <div class="contact_entry__buttons_wrap">
+                <router-link
+                    :to="{ name: 'Home' }"
+                    class="btn is-grey"
+                >
+                    Cancel
+                </router-link>
+
+                <a
+                    role="button"
+                    class="btn is-green"
+                    @click="saveUser()"
+                >
+                    Save
+                </a>
+            </div>
+
         </div>
+
 
     </div>
 </template>

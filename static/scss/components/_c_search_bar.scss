@@ -10,6 +10,12 @@ $sb: search_bar;
         height: 50px;
         border-bottom: 1px solid $green02;
 
+        @include min-screen($lg) {
+            max-width: 1260px;
+            height: 120px;
+            margin: 0 auto;
+        }
+
         &::after {
             content: " ";
             position: absolute;
@@ -30,6 +36,10 @@ $sb: search_bar;
         max-width: 325px;
         height: 100%;
         margin: 0 auto;
+
+        @include min-screen($lg) {
+            max-width: 370px;
+        }
     }
 
     &__option {
@@ -41,6 +51,10 @@ $sb: search_bar;
         font-size: rem(14);
         color: $grey03;
 
+        @include min-screen($lg) {
+            font-size: rem(22);
+        }
+
         &.is-active {
             color: $green02;
         }
@@ -51,6 +65,10 @@ $sb: search_bar;
         width: calc(100% - 50px);
         max-width: 540px;
         margin: 24px auto 25px;
+
+        @include min-screen($lg) {
+            margin: 59px auto 61px;
+        }
     }
 
     &__input_submit {
@@ -65,6 +83,10 @@ $sb: search_bar;
         width: 57px;
         height: 50px;
         padding: 0 0 0 7px;
+
+        @include min-screen($lg) {
+            height: 60px;
+        }
 
         .icon {
             font-size: rem(17);
@@ -82,5 +104,10 @@ $sb: search_bar;
         background-color: #FFFFFF;
         box-shadow: 0 2px 34px 0 $grey02;
         outline: none;
+
+        @include min-screen($lg) {
+            height: 60px;
+
+        }
     }
 }

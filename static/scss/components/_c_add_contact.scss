@@ -4,22 +4,49 @@ $ac: add_contact;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    height: 60px;
-    padding: 0 25px;
     border: 1px dashed #2DA1AD;
     border-radius: 4px;
-    margin: 0 8px;
     opacity: 0.5;
     color: $green02;
+
+    &--mobile {
+        height: 60px;
+        padding: 0 25px;
+
+        @include min-screen($lg) {
+            display: none;
+        }
+    }
+
+    &--desktop {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        flex-direction: column;
+        justify-content: center;
+
+        @include max-screen($lg - 1) {
+            display: none;
+            visibility: hidden;
+        }
+    }
 
     .icon {
         font-size: rem(18);
     }
 
     p {
-        margin: 0 0 0 18px;
         font: $fontPrimReg;
         font-size: rem(14);
+        margin: 0 0 0 18px;
+
+        @include min-screen($lg) {
+            margin: 11px 0 0;
+            font-size: rem(16);
+            line-height: rem(19);
+        }
     }
 
 }

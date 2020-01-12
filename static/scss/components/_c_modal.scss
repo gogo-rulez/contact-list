@@ -22,6 +22,12 @@ $m: modal;
         margin: 0 auto;
         background-color: $white;
         overflow: hidden;
+
+        @include min-screen($lg) {
+            top: 330px;
+            width: 480px;
+            max-width: none;
+        }
     }
 
     &__header {
@@ -29,7 +35,7 @@ $m: modal;
         display: flex;
         align-items: center;
         height: 60px;
-        padding: 0 30px;
+        padding: 0 31px;
         border-bottom: 1px solid $grey04;
     }
 
@@ -40,7 +46,7 @@ $m: modal;
     }
 
     &__content {
-        padding: 30px 30px;
+        padding: 30px 31px;
 
         p {
             font: $fontPrimReg;
@@ -59,8 +65,27 @@ $m: modal;
             margin: 51px auto 0;
             width: 160px;
 
-            .btn + .btn {
-                margin: 18px 0 0;
+            @include min-screen($lg) {
+                flex-direction: row;
+                justify-content: space-between;
+                width: auto;
+                margin: 50px 0 0;
+            }
+
+            .btn {
+                @include min-screen($lg) {
+                    width: 160px;
+                    order: 2;
+                }
+
+                & + .btn {
+                    margin: 18px 0 0;
+
+                    @include min-screen($lg) {
+                        margin: 0;
+                        order: 1;
+                    }
+                }
             }
         }
     }

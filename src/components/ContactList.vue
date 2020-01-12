@@ -3,7 +3,12 @@
         v-if="contactsReady"
         class="contact__list">
 
+        <contact
+            :add-new-contact="true"
+        />
+
         <template v-for="contact in contacts">
+
 
             <template v-if="favoritesPage">
                 <contact

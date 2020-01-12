@@ -2,12 +2,34 @@ $ce: contact_entry;
 
 .#{$ce} {
 
+    @include min-screen($lg) {
+        position: relative;
+        width: 846px;
+        padding: 0 0 225px;
+        margin: 57px auto 0;
+        font-size: 0;
+    }
+
     &__headline {
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 50px;
         border-bottom: 1px solid rgba($grey03, 0.4);
+
+        @include min-screen($lg) {
+            position: absolute;
+            top: 21px;
+            right: 0;
+            width: 630px;
+            border: none;
+        }
+
+        .contactentryedit & {
+            @include min-screen($lg) {
+                top: 34px;
+            }
+        }
     }
 
     &__back_btn,
@@ -17,6 +39,7 @@ $ce: contact_entry;
         justify-content: center;
         width: 50px;
         height: 50px;
+        cursor: pointer;
 
         .icon {
             color: $grey03;
@@ -26,16 +49,51 @@ $ce: contact_entry;
     &__back_btn {
         margin: 0 auto 0 12px;
 
+        @include min-screen($lg) {
+            width: 42px;
+            height: 42px;
+            margin: 0 0 0 -5px;
+        }
+
+        @include min-screen($lg) {
+        }
+
         .icon {
             font-size: rem(12);
+
+            @include min-screen($lg) {
+                font-size: rem(15);
+            }
         }
     }
 
     &__delete_btn {
         margin: 0 13px 0 auto;
 
+        @include min-screen($lg) {
+            width: 78px;
+            margin: 0 -3px 0 auto;
+        }
+
+        p {
+            display: none;
+            visibility: hidden;
+
+            @include min-screen($lg) {
+                display: block;
+                visibility: visible;
+                font: $fontPrimReg;
+                font-size: rem(14);
+                color: $grey03;
+            }
+        }
+
         .icon {
             font-size: rem(17);
+
+            @include min-screen($lg) {
+                margin: 0 0 0 15px;
+            }
         }
     }
 
@@ -44,6 +102,12 @@ $ce: contact_entry;
         align-items: center;
         justify-content: center;
         padding: 20px 0 22px;
+        font-size: 0;
+
+        @include min-screen($lg) {
+            display: inline-flex;
+            padding: 0;
+        }
     }
 
     &__avatar_upload,
@@ -57,6 +121,11 @@ $ce: contact_entry;
         border-radius: 100%;
         background-color: rgba($green02, .4);
 
+        @include min-screen($lg) {
+            width: 180px;
+            height: 180px;
+        }
+
         &::before {
             content: " ";
             position: absolute;
@@ -64,6 +133,7 @@ $ce: contact_entry;
             right: -3px;
             bottom: -3px;
             left: -3px;
+            z-index: -1;
             margin: auto;
             background-color: rgba($grey03, 0.3);
             border-radius: 50%;
@@ -122,11 +192,32 @@ $ce: contact_entry;
         visibility: hidden;
     }
 
+    &__inner_wrap {
+        @include min-screen($lg) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin: -90px 0 0;
+        }
+    }
+
     &__info {
         position: relative;
         padding: 0 0 25px;
         border-top: 1px solid $green02;
         margin: 0 25px 0;
+
+        @include min-screen($lg) {
+            width: 630px;
+            padding: 0 0 30px;
+            margin: 0 0 0 30px;
+        }
+
+        &--numbers {
+            @include min-screen($lg) {
+                padding: 0;
+            }
+        }
     }
 
     &__info_label {
@@ -138,6 +229,11 @@ $ce: contact_entry;
         font: $fontPrimBold;
         font-size: rem(14);
         color: $green02;
+
+        @include min-screen($lg) {
+            height: 59px;
+            font-size: rem(16);
+        }
 
         .icon {
             position: absolute;
@@ -163,6 +259,10 @@ $ce: contact_entry;
 
         + .#{$ce}__input_wrap {
             margin: 40px 0 0;
+
+            @include min-screen($lg) {
+                margin: 30px 0 0;
+            }
         }
     }
 
@@ -175,6 +275,15 @@ $ce: contact_entry;
         font: $fontPrimReg;
         font-size: rem(14);
         color: rgba($grey03, .4);
+
+        @include min-screen($lg) {
+            width: calc(300 / 630 * 100%);
+            height: 60px;
+
+            &:hover {
+                border-color: $green02;
+            }
+        }
 
         &:focus,
         &:active,
@@ -204,6 +313,11 @@ $ce: contact_entry;
         &.is-short {
             width: calc(275 / 325 * 100%);
             margin: 10px 0 0;
+
+            @include min-screen($lg) {
+                width: calc(240 / 630 * 100%);
+                margin: 0 0 0 30px;
+            }
         }
 
     }
@@ -219,6 +333,10 @@ $ce: contact_entry;
         font: $fontPrimReg;
         font-size: rem(12);
         color: $red01;
+
+        @include min-screen($lg) {
+            height: 30px;
+        }
     }
 
     &__delete_wrap {
@@ -229,6 +347,11 @@ $ce: contact_entry;
         align-items: center;
         width: 31px;
         height: 50px;
+        cursor: pointer;
+
+        @include min-screen($lg) {
+            height: 60px;
+        }
     }
 
     &__delete_input {
@@ -240,11 +363,21 @@ $ce: contact_entry;
         border: 1px solid $grey03;
         border-radius: 100%;
         opacity: 0.5;
-        pointer-events: none;
 
         .icon {
             font-size: rem(8);
             color: $grey03;
+        }
+
+        &:hover {
+            @include min-screen($lg) {
+                border-color: $green02;
+                opacity: 1;
+
+                .icon {
+                    color: $green02;
+                }
+            }
         }
     }
 
@@ -253,6 +386,10 @@ $ce: contact_entry;
         align-items: center;
         height: 31px;
         margin: 41px 0 0;
+
+        @include min-screen($lg) {
+            margin: 44px 0 0;
+        }
 
         .icon {
             display: flex;
@@ -281,8 +418,17 @@ $ce: contact_entry;
         padding: 0 25px;
         margin: 69px auto 33px;
 
+        @include min-screen($lg) {
+            position: absolute;
+            bottom: 78px;
+            right: 0;
+            width: 630px;
+            padding: 0;
+        }
+
         .btn {
             width: calc(50% - 5px);
+            max-width: 160px;
 
             &:first-child {
                 margin: 0 auto 0 0;

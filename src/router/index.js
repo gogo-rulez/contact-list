@@ -27,7 +27,7 @@ const routes = [
     {
         path: '/edit-contact/:id(\\d+)',
         name: 'ContactEntryEdit',
-        component: ContactEntryEdit
+        component: ContactEntryEdit,
     },
     {
         path: '/contact/:id(\\d+)',
