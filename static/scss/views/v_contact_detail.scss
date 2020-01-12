@@ -89,6 +89,11 @@ $cd: contact_detail;
 
         &--desktop {
             margin: 0 0 0 auto;
+
+            @include max-screen($lg - 1) {
+                display: none;
+                visibility: hidden;
+            }
         }
     }
 

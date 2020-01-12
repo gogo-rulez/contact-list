@@ -3,6 +3,7 @@
     <div
         v-if="contactReady"
         class="contact_entry">
+
         <div class="contact_entry__headline">
             <router-link
                 :to="{ name: 'Home' }"

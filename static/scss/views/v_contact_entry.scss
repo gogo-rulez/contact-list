@@ -207,6 +207,11 @@ $ce: contact_entry;
         border-top: 1px solid $green02;
         margin: 0 25px 0;
 
+        @include min-screen($md) {
+            width: 540px;
+            margin: 0 auto;
+        }
+
         @include min-screen($lg) {
             width: 630px;
             padding: 0 0 30px;
@@ -429,14 +434,6 @@ $ce: contact_entry;
         .btn {
             width: calc(50% - 5px);
             max-width: 160px;
-
-            &:first-child {
-                margin: 0 auto 0 0;
-            }
-
-            &:last-child {
-                margin: 0 0 0 auto;
-            }
         }
     }
 
