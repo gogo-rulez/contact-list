@@ -10,6 +10,12 @@ $ce: contact_entry;
         font-size: 0;
     }
 
+    &__no_info {
+        font: $fontPrimReg;
+        font-size: rem(35);
+        text-align: center;
+    }
+
     &__headline {
         display: flex;
         align-items: center;
@@ -300,6 +306,16 @@ $ce: contact_entry;
             border-color: $red01;
         }
 
+        &.is-short {
+            width: calc(275 / 325 * 100%);
+            margin: 10px 0 0;
+
+            @include min-screen($lg) {
+                width: calc(240 / 630 * 100%);
+                margin: 0 0 0 30px;
+            }
+        }
+
         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
             color: $grey03;
             opacity: 0.5;
@@ -313,16 +329,6 @@ $ce: contact_entry;
         &::-ms-input-placeholder { /* Microsoft Edge */
             color: $grey03;
             opacity: 0.5;
-        }
-
-        &.is-short {
-            width: calc(275 / 325 * 100%);
-            margin: 10px 0 0;
-
-            @include min-screen($lg) {
-                width: calc(240 / 630 * 100%);
-                margin: 0 0 0 30px;
-            }
         }
 
     }
@@ -391,6 +397,7 @@ $ce: contact_entry;
         align-items: center;
         height: 31px;
         margin: 41px 0 0;
+        cursor: pointer;
 
         @include min-screen($lg) {
             margin: 44px 0 0;
@@ -422,6 +429,11 @@ $ce: contact_entry;
         justify-content: space-between;
         padding: 0 25px;
         margin: 69px auto 33px;
+
+        @include min-screen($md) {
+            width: 540px;
+            padding: 0;
+        }
 
         @include min-screen($lg) {
             position: absolute;

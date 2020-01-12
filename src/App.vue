@@ -58,7 +58,6 @@ export default {
     mounted () {
 
         this.$store.watch(() => this.getModalActivity, modalActive => {
-            console.log('tu sam', this.getContactToDelete);
             this.modalIsActive = modalActive;
         });
     },

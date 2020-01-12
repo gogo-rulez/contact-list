@@ -45,7 +45,6 @@ export const store = new Vuex.Store({
 
         EDIT_CONTACT (state, contactData) {
             const entry = state.contactList.findIndex(x => x.id === contactData.id);
-            console.log('evo me', entry);
             state.contactList.splice(entry, 1, contactData);
             localStorage.setItem('contact_list', JSON.stringify(state.contactList));
         },

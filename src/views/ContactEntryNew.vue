@@ -66,6 +66,7 @@
 
             <contact-entry-info
                 :model="newContact.numbers"
+                :error="errors.numbers"
                 input-name="numbers"
                 label="numbers"
                 icon-name="phone"
@@ -100,6 +101,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import ContactEntryInfo from '@/components/ContactEntryInfo';
+import {contactEntryMixin} from '@/mixins/contactEntryMixin';
 
 export default {
     name: 'ContactEntryNew',
@@ -107,6 +109,8 @@ export default {
     components: {
         ContactEntryInfo
     },
+
+    mixins: [contactEntryMixin],
 
     data () {
         return {
@@ -121,20 +125,18 @@ export default {
             },
             errors: {
                 full_name: '',
-                email: ''
+                email: '',
+                numbers: []
             },
             previewImageSource: '',
         }
     },
 
-    computed: {
-        ...mapGetters(['getContactList', 'getContactListEntries'])
-    },
+    mounted () {
 
-    watch: {
         // watch when contactList changes in store
         // reset the data and the component
-        getContactList () {
+        this.$store.watch(() => this.getContactListEntries, entries => {
             this.newContact = {
                 id: null,
                 user_avatar: '',
@@ -146,42 +148,11 @@ export default {
 
             this.previewImageSource = '';
             this.nextContactId = this.getContactListEntries + 1;
-        }
+        });
     },
 
     methods: {
         ...mapActions(['addToContactList']),
-
-        openBrowseWindow (e) {
-            this.$refs['browse_btn'].click();
-        },
-
-        previewImage (e) {
-            this.previewImageSource = URL.createObjectURL(e.target.files[0]);
-
-            setTimeout(() => {
-                this.getBase64Image(this.$refs['avatar_image']);
-            }, 100);
-        },
-
-        // https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page
-        getBase64Image(img) {
-            let canvas = document.createElement('canvas');
-            canvas.width = this.$refs['avatar_image'].width;
-            canvas.height = this.$refs['avatar_image'].height;
-
-            let ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            let dataURL = canvas.toDataURL('image/png');
-
-            this.newContact.user_avatar = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
-        },
-
-        // remove choosen image
-        removeImage () {
-            this.previewImageSource = '';
-            this.newContact.user_avatar = '';
-        },
 
         // set contact id
         // send data to store
@@ -193,39 +164,6 @@ export default {
             this.addToContactList(this.newContact);
         },
 
-        validateInput () {
-            if(!this.newContact.full_name) {
-                this.errors.full_name = 'This field is required.'
-            } else if(!this.validFullName(this.newContact.full_name)) {
-                this.errors.full_name = 'Enter Your first and last name.'
-            } else {
-                this.errors.full_name = '';
-            }
-
-            if(!this.newContact.email) {
-                this.errors.email = 'This field is required.'
-            } else if(!this.validEmail(this.newContact.email)) {
-                this.errors.email = 'Enter a valid e-mail.'
-            } else {
-                this.errors.email = '';
-            }
-
-            if(this.errors.full_name || this.errors.email) return false;
-
-            return true;
-        },
-
-        validFullName (fullName) {
-            let regExp = /^([a-zA-ZčćžšđČĆŽŠĐ]{2,}(\s[a-zA-ZčćžšđČĆŽŠĐ]{2,})+)$/;
-
-            return regExp.test(fullName);
-        },
-
-        validEmail (email) {
-            let regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-            return regExp.test(email);
-        }
     }
 };
 </script>

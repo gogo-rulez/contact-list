@@ -39,6 +39,7 @@ $c: contact;
     }
 
     &--add_new {
+        min-height: 152px;
         border: none;
 
         @include max-screen($lg - 1) {
@@ -49,16 +50,17 @@ $c: contact;
 
     &__list_wrap {
         padding: 0 8px;
+        margin: 0 0 60px;
 
         @include min-screen($md) {
             width: 540px;
             padding: 0;
-            margin: 0 auto;
+            margin: 0 auto 60px;
         }
 
         @include min-screen($lg) {
             position: relative;
-            max-width: 1260px;
+            width: 1260px;
             padding: 0 47px;
             margin: 0 auto;
         }

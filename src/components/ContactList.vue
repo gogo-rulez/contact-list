@@ -4,11 +4,11 @@
         class="contact__list">
 
         <contact
+            v-if="!favoritesPage"
             :add-new-contact="true"
         />
 
         <template v-for="contact in contacts">
-
 
             <template v-if="favoritesPage">
                 <contact

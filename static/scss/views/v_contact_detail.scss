@@ -7,6 +7,12 @@ $cd: contact_detail;
         margin: 60px auto 0;
     }
 
+    &__no_info {
+        font: $fontPrimReg;
+        font-size: rem(35);
+        text-align: center;
+    }
+
     &__headline {
         display: flex;
         align-items: center;
@@ -137,6 +143,15 @@ $cd: contact_detail;
         img {
             display: block;
             width: 100%;
+        }
+
+        .icon {
+            font-size: rem(16);
+            color: $green02;
+
+            @include min-screen($lg) {
+                font-size: rem(60);
+            }
         }
     }
 

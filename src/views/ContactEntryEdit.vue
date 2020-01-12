@@ -76,6 +76,7 @@
 
             <contact-entry-info
                 :model="newContact.numbers"
+                :error="errors.numbers"
                 input-name="numbers"
                 label="numbers"
                 icon-name="phone"
@@ -102,14 +103,17 @@
             </div>
 
         </div>
+    </div>
 
-
+    <div v-else class="contact_entry">
+        <p class="contact_entry__no_info">There is no info for this contact!</p>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import ContactEntryInfo from '@/components/ContactEntryInfo';
+import {contactEntryMixin} from '@/mixins/contactEntryMixin';
 
 export default {
     name: 'ContactEntryEdit',
@@ -117,6 +121,8 @@ export default {
     components: {
         ContactEntryInfo
     },
+
+    mixins: [contactEntryMixin],
 
     data () {
         return {
@@ -130,19 +136,18 @@ export default {
             },
             errors: {
                 email: '',
-                full_name: ''
+                full_name: '',
+                numbers: []
             },
             contactReady: false,
             previewImageSource: '',
         }
     },
 
-    computed: {
-        ...mapGetters(['getContactList', 'getContactListEntries'])
-    },
-
     mounted () {
         this.newContact = this.getContactList.find(x => x.id === Number(this.$route.params.id));
+
+        if(!this.newContact) return false;
 
         if(this.newContact.user_avatar) {
             this.previewImageSource = `data:image/png;base64,${this.newContact.user_avatar}`;
@@ -154,77 +159,11 @@ export default {
     methods: {
         ...mapActions(['editContact', 'openModal']),
 
-        openBrowseWindow (e) {
-            this.$refs['browse_btn'].click();
-        },
-
-        previewImage (e) {
-            this.previewImageSource = URL.createObjectURL(e.target.files[0]);
-
-            setTimeout(() => {
-                this.getBase64Image(this.$refs['avatar_image']);
-            }, 100);
-        },
-
-        // https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page
-        getBase64Image(img) {
-            let canvas = document.createElement('canvas');
-            canvas.width = this.$refs['avatar_image'].width;
-            canvas.height = this.$refs['avatar_image'].height;
-
-            let ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            let dataURL = canvas.toDataURL('image/png');
-
-            this.newContact.user_avatar = dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
-        },
-
-        removeImage () {
-            this.previewImageSource = '';
-            this.newContact.user_avatar = '';
-        },
-
         // send data to store
         saveUser () {
-
             if(!this.validateInput()) return false;
-
             this.editContact(this.newContact);
         },
-
-        validateInput () {
-            if(!this.newContact.full_name) {
-                this.errors.full_name = 'This field is required.'
-            } else if(!this.validFullName(this.newContact.full_name)) {
-                this.errors.full_name = 'Enter Your first and last name.'
-            } else {
-                this.errors.full_name = '';
-            }
-
-            if(!this.newContact.email) {
-                this.errors.email = 'This field is required.'
-            } else if(!this.validEmail(this.newContact.email)) {
-                this.errors.email = 'Enter a valid e-mail.'
-            } else {
-                this.errors.email = '';
-            }
-
-            if(this.errors.full_name || this.errors.email) return false;
-
-            return true;
-        },
-
-        validFullName (fullName) {
-            let regExp = /^([a-zA-ZčćžšđČĆŽŠĐ]{2,}(\s[a-zA-ZčćžšđČĆŽŠĐ]{2,})+)$/;
-
-            return regExp.test(fullName);
-        },
-
-        validEmail (email) {
-            let regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-            return regExp.test(email);
-        }
     }
 };
 </script>

@@ -114,6 +114,10 @@
 
         </div>
     </div>
+
+    <div v-else class="contact_detail">
+        <p class="contact_detail__no_info">There is no info for this contact!</p>
+    </div>
 </template>
 
 <script>
@@ -138,6 +142,9 @@ export default {
 
     mounted () {
         this.contact = this.getContactList.find(x => x.id === Number(this.$route.params.id));
+
+        if(!this.contact) return false;
+
         this.contactReady = true;
     },
 

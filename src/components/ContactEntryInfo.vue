@@ -18,9 +18,9 @@
                         v-model="tempModel[index].number"
                         :id="`${inputName}_${input}`"
                         :placeholder="placeholder"
-                        type="number"
+                        type="text"
                         class="contact_entry__input"
-                        :class="{'has-value': tempModel[index].number}"
+                        :class="[{'has-value': tempModel[index].number}, {'has-error': numberError(index, 'number')}]"
                         @blur="returnModelValue()"
                     />
                     <input
@@ -29,7 +29,7 @@
                         type="text"
                         placeholder="Label"
                         class="contact_entry__input is-short"
-                        :class="{'has-value': tempModel[index].label}"
+                        :class="[{'has-value': tempModel[index].label}, {'has-error': numberError(index, 'label')}]"
                         @blur="returnModelValue()"
                     />
 
@@ -83,101 +83,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {contactEntryInfoMixin} from '@/mixins/contactEntryInfoMixin'
 
 export default {
     name: 'NewContactInfo',
 
-    props: {
-        model: [String, Array, Object],
-        inputName: String,
-        label: String,
-        iconName: String,
-        placeholder: String,
-        multipleInputs: Boolean,
-        error: String
-    },
-
-    data () {
-        return {
-            tempModel: null,
-            inputsNumber: this.model.length ? this.model.length : 0,
-            showInputs: false
-        }
-    },
-
-    computed: {
-        ...mapGetters(['getContactListEntries'])
-    },
-
-    mounted () {
-        this.tempModel = this.model;
-        console.log(this.inputsNumber);
-
-        // stop here if the multipleInput prop is false
-        if (!this.multipleInputs) return;
-
-        if(!this.inputsNumber) {
-            this.increaseInputNumber();
-        } else {
-            this.showInputs = true;
-        }
-    },
-
-    methods: {
-
-        // check if the field has a value
-        // and add a class that will style the text
-        checkValue(e) {
-            const element = e.target;
-
-            if(element.value) {
-                element.classList.add('has-value');
-            } else {
-                element.classList.remove('has-value');
-
-            }
-        },
-
-        // push a unique id to the items array
-        // show the items
-        increaseInputNumber () {
-            const uniqueId = this.getContactListEntries + 1;
-
-            console.log('evo me', this.inputName);
-            const fieldName = `${this.inputName}_${uniqueId}`;
-            const fieldLabel = `${this.inputName}_${uniqueId}_label`;
-            const numberObject = {
-                number: '',
-                label: ''
-            }
-
-            this.tempModel.push({number: '', label: ''});
-
-            this.inputsNumber = this.inputsNumber + 1;
-            console.log(this.inputsNumber);
-            this.showInputs = true;
-        },
-
-        // get element parent and position of item in array
-        // remove the parent from the DOM
-        // remove the item from the array
-        decreaseInputNumber (e, uniqueId) {
-            console.log('decreaseInputNumber');
-            const element = e.target;
-            // const position = this.inputsNumber.indexOf(uniqueId);
-
-            element.parentElement.remove();
-
-            this.inputsNumber = this.inputsNumber - 1;
-            console.log(uniqueId);
-            let poppedOut = this.tempModel.splice(uniqueId, 1);
-            console.log('popped out', poppedOut);
-        },
-
-        returnModelValue () {
-            this.$emit('modelValue', this.tempModel);
-        }
-    }
+    mixins: [contactEntryInfoMixin]
 }
 </script>
