@@ -115,7 +115,7 @@ $cd: contact_detail;
         display: flex;
         align-items: center;
         height: 98px;
-        border-bottom: 1px solid $green02;
+        border-bottom: 1px solid $orange02;
 
         @include min-screen($lg) {
             align-items: flex-start;
@@ -147,7 +147,7 @@ $cd: contact_detail;
 
         .icon {
             font-size: rem(16);
-            color: $green02;
+            color: $orange02;
 
             @include min-screen($lg) {
                 font-size: rem(60);
@@ -163,7 +163,7 @@ $cd: contact_detail;
             display: flex;
             align-items: center;
             padding: 30px 0 27px;
-            border-bottom: 1px solid $green02;
+            border-bottom: 1px solid $orange02;
             margin: 0 0 0 30px;
         }
     }
@@ -204,7 +204,7 @@ $cd: contact_detail;
     &__label {
         display: flex;
         align-items: center;
-        color: $green02;
+        color: $orange02;
 
         @include min-screen($lg) {
             display: inline-flex;

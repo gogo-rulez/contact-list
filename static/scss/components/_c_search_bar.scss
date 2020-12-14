@@ -8,7 +8,7 @@ $sb: search_bar;
         position: relative;
         box-sizing: border-box;
         height: 50px;
-        border-bottom: 1px solid $green02;
+        border-bottom: 1px solid $orange02;
 
         @include min-screen($lg) {
             max-width: 1260px;
@@ -56,7 +56,7 @@ $sb: search_bar;
         }
 
         &.is-active {
-            color: $green02;
+            color: $orange02;
         }
     }
 

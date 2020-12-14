@@ -4,10 +4,10 @@ $ac: add_contact;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    border: 1px dashed #2DA1AD;
+    border: 1px dashed $orange02;
     border-radius: 4px;
     opacity: 0.5;
-    color: $green02;
+    color: $orange02;
 
     &--mobile {
         height: 60px;

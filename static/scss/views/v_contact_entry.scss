@@ -125,7 +125,7 @@ $ce: contact_entry;
         width: 150px;
         height: 150px;
         border-radius: 100%;
-        background-color: rgba($green02, .4);
+        background-color: rgba($orange02, .4);
 
         @include min-screen($lg) {
             width: 180px;
@@ -210,7 +210,7 @@ $ce: contact_entry;
     &__info {
         position: relative;
         padding: 0 0 25px;
-        border-top: 1px solid $green02;
+        border-top: 1px solid $orange02;
         margin: 0 25px 0;
 
         @include min-screen($md) {
@@ -239,7 +239,7 @@ $ce: contact_entry;
         padding: 0 0 0 30px;
         font: $fontPrimBold;
         font-size: rem(14);
-        color: $green02;
+        color: $orange02;
 
         @include min-screen($lg) {
             height: 59px;
@@ -292,7 +292,7 @@ $ce: contact_entry;
             height: 60px;
 
             &:hover {
-                border-color: $green02;
+                border-color: $orange02;
             }
         }
 
@@ -303,7 +303,7 @@ $ce: contact_entry;
         }
 
         &.has-error {
-            border-color: $red01;
+            border-color: $magenta01;
         }
 
         &.is-short {
@@ -343,7 +343,7 @@ $ce: contact_entry;
         padding: 0 0 0 25px;
         font: $fontPrimReg;
         font-size: rem(12);
-        color: $red01;
+        color: $magenta01;
 
         @include min-screen($lg) {
             height: 30px;
@@ -382,11 +382,11 @@ $ce: contact_entry;
 
         &:hover {
             @include min-screen($lg) {
-                border-color: $green02;
+                border-color: $orange02;
                 opacity: 1;
 
                 .icon {
-                    color: $green02;
+                    color: $orange02;
                 }
             }
         }
@@ -409,17 +409,17 @@ $ce: contact_entry;
             justify-content: center;
             width: 30px;
             height: 30px;
-            border: 1px solid $green02;
+            border: 1px solid $orange02;
             border-radius: 100%;
             font-size: rem(8);
-            color: $green02;
+            color: $orange02;
         }
 
         p {
             margin: 0 0 0 15px;
             font: $fontPrimReg;
             font-size: rem(14);
-            color: $green02;
+            color: $orange02;
         }
     }
 

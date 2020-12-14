@@ -2,8 +2,11 @@ $h: header;
 
 .#{$h} {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
-    background-image: linear-gradient(182.65deg, $green01 0%, $green03 99.98%, $green03 100%);
+    background-color: $orange01;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 
     @include min-screen($lg) {
@@ -33,15 +36,13 @@ $h: header;
         }
     }
 
-    img {
-        display: block;
-        width: 149px;
-        height: 15px;
-
-        @include min-screen($lg) {
-            width: 178px;
-            height: 18px;
-        }
+    &__logo {
+        margin: 0 0 5px;
+        font: $fontPrimReg;
+        font-size: rem(15);
+        line-height: rem(15);
+        text-transform: uppercase;
+        color: #fff;
     }
 
 

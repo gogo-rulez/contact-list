@@ -1,8 +1,6 @@
 <template>
     <header class="header">
-        <figure class="header__logo_figure">
-            <img src="@/assets/img/typeqast-logo.svg" alt="Typeqast logo">
-        </figure>
+        <p class="header__logo">Contact list</p>
     </header>
 </template>
 
